@@ -21,6 +21,7 @@ var generatePassword = function() {
   //get required password length
   passwordLength = parseInt(prompt("How many characters long does your password need to be? Please input a number 8-128."));
 
+  if (passwordLength >= 8 && passwordLength <= 128) {
   //get password criteria
   needLower = 
     window.confirm("Select 'OK' if your password requires at least one lowercase letter. If not, select 'Cancel'.");
@@ -46,14 +47,18 @@ var generatePassword = function() {
     usableChars = usableChars + specialChars;
   }
 
-//for entered password length, generate random chracter from usable characters
-for (i=0; i < passwordLength; i++) {
+  //for entered password length, generate random chracter from usable characters
+  for (i=0; i < passwordLength; i++) {
 
-  var randomChar = usableChars[Math.floor(Math.random() * usableChars.length)];
-  finalPassword = finalPassword += randomChar;
-}
-return finalPassword;
+    var randomChar = usableChars[Math.floor(Math.random() * usableChars.length)];
+    finalPassword = finalPassword += randomChar;
+  }
 
+  return finalPassword;
+
+} else {
+    window.alert("Entered password length is not between 8 and 128. Please try again.")
+  };
 };
 
 function writePassword() {
