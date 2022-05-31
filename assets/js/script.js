@@ -4,6 +4,7 @@ var upperCase = ("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 var numbers = ("0123456789");
 var specialChars = ("!#$%&()*+-_./:;<>=?@[]^{}|~");
 var finalPassword = "";
+var usableChars = "";
 
 
   
@@ -24,45 +25,25 @@ var generatePassword = function() {
     window.confirm("Select 'OK' if your password requires at least one special character. If not, select 'Cancel'.");
 
   if (needLower) { 
-    finalPassword = finalPassword + lowerCase;
+    usableChars = usableChars + lowerCase;
   }
   if (needUpper) {
-    finalPassword = finalPassword + upperCase;
+    usableChars = usableChars + upperCase;
   }
   if (needNumber) {
-    finalPassword = finalPassword + numbers;
+    usableChars = usableChars + numbers;
   }
   if (needSpecial) {
-    finalPassword = finalPassword + specialChars;
+    usableChars = usableChars + specialChars;
   }
 
+for (i=0; i < passwordLength; i++) {
 
+  var randomChar = usableChars[Math.floor(Math.random() * usableChars.length)];
+  finalPassword = finalPassword += randomChar;
+}
+return finalPassword;
 
-  // for (i = 0; i < passwordLength; i++) {
-  // // generate random lowecase letter
-  // if (needLower) {
-  //   const randomLowerCase = lowerCase[Math.floor(Math.random() * lowerCase.length)];
-  //    finalPassword = finalPassword + randomLowerCase;
-  // };
-  // //generate random uppercase letter
-  // if (needUpper) {
-  //   const randomUpperCase = upperCase[Math.floor(Math.random() * upperCase.length)];
-  //   finalPassword = finalPassword + randomUpperCase;
-  // };
-  //  //generate random number
-  // if (needNumber) {
-  //   const randomNum = numbers[Math.floor(Math.random() * numbers.length)];
-  //   finalPassword = finalPassword + randomNum;
-  // };
-  //  //generate random special character
-  // if (needSpecial) {
-  //   const randomSpec = specialChars[Math.floor(Math.random() * specialChars.length)];
-  //   finalPassword = finalPassword + randomSpec;
-  // };
-  // if (finalPassword.length === passwordLength) {
-  //   return finalPassword;
-  // }
-  // };
 };
 
 function writePassword() {
